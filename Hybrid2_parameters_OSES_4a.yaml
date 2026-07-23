@@ -1,0 +1,71 @@
+--- #  ---------------------Hybrid2Grid input file -------------------
+    # Written for use with Hybrid2Grid
+
+# -------------------------------- TURBINE PARAMETERS ----------------------------------- 
+turbine_params:
+  P_rated:                  5.                    # Rated powrer [MW]
+  U_in:                     3.0                   # Cut-in wind speed [m/s] 
+  U_rated:                  11.4                  # Rated wind speed [m/s]
+  U_out:                    25.0                  # Cut-out wind speed [m/s] 
+  powerCurveFileName:       'NREL_5MW.csv'      # power curve file
+
+# -------------------------------- WIND PLANT PARAMETERS ----------------------------------- 
+plant_params:
+  n_turbines:               2034                # number of turbines  5500
+  windFile:                 'wind1.csv'           # wind data file
+  
+# -------------------------------- LOAD PARAMETERS ----------------------------------- 
+load_params:
+  loadFile:                 'load1.csv'          # load data file
+
+#------------------------------- STORAGE PARAMETERS ----------------------------------
+store_params:
+  StorageLevelMax:           1e5             # maximum storage capacity, MWh 0.25e6
+  StoreInitRatio:            1                # initial storage level ratio
+  P_chg_rated:               30000.              # rated charger output power, MW
+  fxd_loss_ratio_chg:        0.               # fixed loss ratio based on input power
+  variable_loss_ratio_chg:   0                # variable loss ratio based on input power
+  P_dis_rated:               30000.              # rated discharge output power, MW
+  fxd_loss_ratio_dis:        0.               # fixed loss ratio based on input power
+  variable_loss_ratio_dis:   0               # variable loss ratio based on input power
+
+#------------------------------- GENERATOR PARAMETERS ----------------------------------
+gen_params:
+  gen_file:                  'generators_OSES.csv'  # generator parameter file   
+  YNshutoff:                "Y"                 # flag for shutoff of all generators allowed, = "Y" if yes
+
+#------------------------------- PV PANEL PARAMETERS ----------------------------------
+panel_params:
+  k:                        1.3807E-23        # Boltzmann s constant, J/K
+  e:                        1.6022E-19        # Electron energy, Coulombs
+  GT_ref:                   1000              # Reference insolation, W/m^2
+  TC_ref:                   25                # Reference temperature, C
+  N_cells:                  54                # Number of cells in panel, -
+  Isc:                      8.21              # Short circuit current, A
+  V_oc:                     32.9              # Open circuit voltage, V
+  I_mp:                     7.61              # Maximum power point current, A
+  V_mp:                     26.3              # Maximum power point voltage, V
+  m:                        1.5000            # Ideality factor, -
+  Isc_coeff:                0.00318           # Short circuit current temperature coefficient, A/C
+  Voc_coeff:                -0.123             # Open circuit voltage temperature coefficient, V/C
+  PV_UL:                    11.6              # Panel heat loss coefficient, W/m^2 C
+  PV_Length:                1.425             # PV panel length, m
+  PV_Width:                 0.99              # PV panel width, m
+
+#------------------------------- SOLAR SITE PARAMETERS ----------------------------------
+solar_site_params:
+   YNSolar:        'Y'          # code for whether solar PVs are used, if so YNSolar = 'Y'
+   latitude:       42.37        # latitude
+   slope:          30        # slope of panels
+   azimuth_w:        0          # azimuth of panels
+   reflec:         0.2          # surface reflectance
+   PV_rated:         32757     # PV system rated power, MW
+   first_day:        1         # first day of data
+   first_hour:       0         # first hour of data
+   solar_data:                 'solar1.csv'     # solar data file
+   temperature_data:           'temperature1.csv'  # temperature data file 
+
+#------------------------------- TIME SERIES OUTPUT ----------------------------------
+time_series:
+   YNTimeSeries:   'N'        # code for time series output, = Y if time series is requested
+   OutputFile:     'OSES_out.csv'  # name of time series output file
